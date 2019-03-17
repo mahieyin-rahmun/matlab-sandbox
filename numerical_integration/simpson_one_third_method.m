@@ -14,6 +14,6 @@ function I = simpson_one_third_method(Function, lower_interval, upper_interval, 
     % sum up the odd indexed x values
     sum_odd = sum(Function(x_vector(3:2:no_of_intervals-1)));
 
-    % finc the numerical value of integration
+    % find the numerical value of integration
     I = (h/3) * (Function(lower_interval) + 4 * sum_even + 2 * sum_odd + Function(upper_interval));
 end
