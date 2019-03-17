@@ -6,18 +6,21 @@ clear;
 % N = No. of intervals
 % a = lower limit
 % b = upper limit
-N = 50;
+N = 100;
 a = 0;
 b = 10;
 
 %% declare the function
-Function = @ (x) (2 .* sin(x) .^ 2 + 5 .* cos(x + 3));
+Function = @ (x) 2 .* sin(x) .^ 2 + 5 .* cos(x + 3);
+% Function = @ (x) 2 .* x .^ 2 + 5 .* x + 3;
+% Function = @ (x) exp(x .* 2) + 10 .* x;
 
 %% arrays for storing the results
 rect_results = zeros(1, N);
 midpoint_results = zeros(1, N);
 trapezoidal_results = zeros(1, N);
 simpson_one_third_results = zeros(1, N);
+simpson_three_eight_results = zeros(1, N);
 
 %% for number of intervals  from 1 till N, calculate the numerically intgrated value
 for i = 1:N
@@ -25,6 +28,7 @@ for i = 1:N
    midpoint_results(i) = midpoint_method(Function, a, b, i);
    trapezoidal_results(i) = trapezoidal_method(Function, a, b, i);
    simpson_one_third_results(i) = simpson_one_third_method(Function, a, b, i);
+   simpson_three_eight_results(i) = simpson_three_eight_method(Function, a, b, i);
 end
 
 %% calculate the actual value (Ground Truth)
@@ -41,9 +45,10 @@ plot(rect_results, '-or'); hold on;
 plot(midpoint_results, '-+g'); hold on;
 plot(trapezoidal_results, '-.b'); hold on;
 plot(simpson_one_third_results, '-sm'); hold on;
+plot(simpson_three_eight_results, '-db'); hold on;
 plot(actual_val, '-*c'); hold on;
 
-legend("Rectangle Method", "Mid-point Method", "Trapezoidal Method", "Simpson's One-Third Method", "Actual Value");
+legend("Rectangle Method", "Mid-point Method", "Trapezoidal Method", "Simpson's One-Third Method", "Simpson's Three-Eight Method", "Actual Value");
 
 title(title_string, 'fontsize', 16);
 xlabel('Number of Intervals','fontsize',14);
