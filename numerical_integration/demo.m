@@ -3,7 +3,6 @@ function [] = demo(N)
     % N = No. of intervals
     % a = lower limit
     % b = upper limit
-    N = 100;
     a = 0;
     b = 10;
 
